@@ -1,12 +1,17 @@
 <!-- ============================================================
-  Navbar Component — 统一导航模板（单一来源，勿在页面中手写导航）
-  由 components/navbar.js fetch 注入到 <div id="navbar"> 占位符。
-  约定：
-  - 站内锚点统一写同页格式（#about 等）；子页面所需跨页前缀由
-    navbar.js 在注入时自动改写为 index.html#about。
-  - 每个 nav 链接带 data-nav 标识，navbar.js 依据占位符上的
-    data-active 属性为当前页面对应链接添加 .active。
-  - 样式来自 components/navbar.css，页面中禁止内联 navbar 样式。
+  Navbar Component - unified navigation template (single source of
+  truth, do not hand-write navigation in pages).
+  Injected into the <div id="navbar"> placeholder via fetch in
+  components/navbar.js.
+  Conventions:
+  - In-page anchors are written in same-page form (#about etc.); the
+    cross-page prefix needed by sub-pages is automatically rewritten
+    to index.html#about by navbar.js at injection time.
+  - Each nav link carries a data-nav marker; navbar.js uses the
+    data-active attribute on the placeholder to add .active to the
+    link matching the current page.
+  - Styles come from components/navbar.css; inline navbar styles are
+    forbidden in pages.
   ============================================================ -->
 
 <!-- TOP UTILITY BAR -->

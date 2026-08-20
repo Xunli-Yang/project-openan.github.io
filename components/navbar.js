@@ -1,22 +1,27 @@
 /* ============================================================
-   Navbar Component — 统一导航注入器
-   配合 components/navbar.html（模板）与 components/navbar.css（样式）。
+   Navbar Component - unified navigation injector
+   Works with components/navbar.html (template) and
+   components/navbar.css (styles).
 
-   页面接入方式：
+   Page integration:
      <div id="navbar" data-active="index|best-practices|governance">
-       …<noscript> 兜底导航（无 JS 环境）…
+       ...<noscript> fallback navigation (no-JS environments)...
      </div>
      <script src="components/navbar.js" defer></script>
 
-   行为（详见 docs/adr/ADR-002-unified-navbar-component.md）：
-   1. fetch 模板并注入占位符；
-   2. 依占位符 data-active 为 .nav a[data-nav=…] 添加 .active
-      （值为 index 即首页，不标记任何链接）；
-   3. 非首页时把 .logo 的 "#" 改为 "index.html"，其余 a[href^="#"]
-      改写为 "index.html#…" 跨页格式；首页保持同页锚点平滑滚动。
+   Behavior (see docs/adr/ADR-002-unified-navbar-component.md):
+   1. fetch the template and inject it into the placeholder;
+   2. based on the placeholder's data-active, add .active to
+      .nav a[data-nav=...] (when the value is 'index' i.e. the home
+      page, no link is marked);
+   3. on non-home pages, change the .logo href from "#" to
+      "index.html" and rewrite other a[href^="#"] to the cross-page
+      form "index.html#..."; on the home page keep same-page anchors
+      with smooth scrolling.
 
-   注：fetch 在 file:// 协议下不可用，本地预览请使用 HTTP 服务
-   （如 python -m http.server）；JS 禁用时由 <noscript> 提供基础导航。
+   Note: fetch is unavailable under the file:// protocol; use an HTTP
+   server for local preview (e.g. python -m http.server). When JS is
+   disabled, <noscript> provides basic navigation.
    ============================================================ */
 (function () {
   'use strict';
@@ -37,14 +42,14 @@
     .then(function (html) {
       host.innerHTML = html;
 
-      // 1. Active state：依据占位符 data-active 标记当前页链接
+      // 1. Active state: mark the current page link based on the placeholder's data-active
       var active = host.getAttribute('data-active');
       if (active && active !== 'index') {
         var current = host.querySelector('.nav a[data-nav="' + active + '"]');
         if (current) current.classList.add('active');
       }
 
-      // 2. 跨页锚点改写：子页面跳回首页时使用跨页格式
+      // 2. Cross-page anchor rewrite: use the cross-page form when sub-pages link back to home
       if (!isHomePage()) {
         var logo = host.querySelector('.logo');
         if (logo) logo.setAttribute('href', 'index.html');
@@ -56,11 +61,12 @@
       }
     })
     .catch(function (err) {
-      // fetch 失败（典型场景：file:// 直接打开）：占位符内 <noscript>
-      // 在 JS 启用时不渲染，这里给出可见提示，避免页面顶部空白。
-      console.error('[navbar] 组件注入失败，请通过 HTTP 服务访问：', err);
+      // fetch failed (typical when opened directly via file://): the
+      // <noscript> inside the placeholder does not render when JS is
+      // enabled, so show a visible notice to avoid an empty page top.
+      console.error('[navbar] injection failed, please access the site via an HTTP server:', err);
       var note = document.createElement('p');
-      note.textContent = '导航加载失败：请通过 HTTP 服务访问本站。';
+      note.textContent = 'Navigation failed to load: please access the site via an HTTP server.';
       note.style.cssText =
         'margin:0;padding:12px 24px;font-family:ui-monospace,monospace;' +
         'font-size:0.8rem;color:#e06c75;background:rgba(224,108,117,0.08);' +

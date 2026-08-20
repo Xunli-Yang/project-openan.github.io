@@ -929,6 +929,41 @@
     .arch-meta { flex-direction: column; gap: 16px; }
   }
 
+  /* ---------- PARTNER LOGO GRID ---------- */
+  .partner-grid {
+    margin: 60px 0;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
+    align-items: center;
+    justify-items: center;
+  }
+  .partner-logo {
+    height: 56px;
+    width: auto;
+    max-width: 100%;
+    opacity: 0.7;
+    transition: opacity 0.3s;
+  }
+  .partner-logo:hover {
+    opacity: 1;
+  }
+
+  /* Orange and Huawei logos render smaller at 56px; widen them slightly */
+  .partner-logo[alt="Orange"] {
+    height: 120px;
+  }
+  .partner-logo[alt="Huawei"] {
+    height: 80px;
+  }
+
+  @media (max-width: 768px) {
+    .partner-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 32px;
+    }
+  }
+
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {
       animation: none !important;
@@ -1340,6 +1375,30 @@
         <p>Contributions are accepted under Apache 2.0. Each commit needs a Developer Certificate of Origin sign-off (git commit -s), and EasyCLA prompts you to sign the Contributor License Agreement on your first pull request. Both checks run automatically.</p>
         <code>Apache 2.0 . DCO . EasyCLA</code>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ECOSYSTEM PARTICIPANTS -->
+<section id="participants">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <span class="kicker section-tag">/ Ecosystem Participants</span>
+        <h2>Ecosystem Participants</h2>
+      </div>
+      <p>Any vendor, operator, or individual contributing or using OpenAN is welcome to join the ecosystem.</p>
+    </div>
+
+    <div class="partner-grid">
+        <img class="partner-logo" src="./src/images/participants-logo/中国移动.png" alt="China Mobile" />
+        <img class="partner-logo" src="./src/images/participants-logo/huawei.png" alt="Huawei" />
+        <img class="partner-logo" src="./src/images/participants-logo/orange.png" alt="Orange" />
+        <img class="partner-logo" src="./src/images/participants-logo/ZTE.webp" alt="ZTE" />
+        <img class="partner-logo" src="./src/images/participants-logo/ais.png" alt="AIS" />
+        <img class="partner-logo" src="./src/images/participants-logo/infosys.webp" alt="Infosys" />
+        <img class="partner-logo" src="./src/images/participants-logo/asianinfo.png" alt="AsiaInfo" />
+        <img class="partner-logo" src="./src/images/participants-logo/personal.webp" alt="Personal / Telecom Argentina" />
     </div>
   </div>
 </section>

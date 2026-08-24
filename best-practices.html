@@ -109,7 +109,8 @@
 
   .practice-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 1fr;
+    max-width: 440px;
     gap: 20px;
   }
   .practice-card {
@@ -169,12 +170,6 @@
     font-size: 0.9rem;
     color: var(--text-muted);
     line-height: 1.6;
-  }
-
-  @media (max-width: 860px) {
-    .practice-grid {
-      grid-template-columns: 1fr;
-    }
   }
 
   /* ---------- FOOTER ---------- */
@@ -274,27 +269,15 @@
   </div>
 
   <div class="practice-grid">
-    <a href="best-practices/cross-domain-fault-handling-via-a2a-t.html" class="practice-card">
+    <a href="best-practices/usecase.html" class="practice-card">
       <div class="practice-image">
-        <img src="best-practices/images/fujian_mobile_pic.png" alt="Cross-Domain Fault Handling">
+        <img src="best-practices\images\usecase_pic.png" alt="Home Broadband Complaint Handling">
       </div>
       <div class="practice-body">
-        <h3 class="practice-title">Cross-Domain Fault Handling via A2A-T</h3>
-        <span class="practice-subject">CMCC Fujian</span>
+        <h3 class="practice-title">Home Broadband Complaint Handling</h3>
+        <span class="practice-subject">Multi-Agent Example Case</span>
         <div class="practice-divider"></div>
-        <p class="practice-desc">Multi-agent fault collaboration across P&amp;E and wireless systems at CMCC Fujian</p>
-      </div>
-    </a>
-
-    <a href="best-practices\e2e-complaint-handling-automation.html" class="practice-card">
-      <div class="practice-image">
-        <img src="best-practices/images/guangdong_mobile_pic.png" alt="Complaint Handling Automation">
-      </div>
-      <div class="practice-body">
-        <h3 class="practice-title">Complaint Handling Automation by OpenAN</h3>
-        <span class="practice-subject">CMCC Guangdong</span>
-        <div class="practice-divider"></div>
-        <p class="practice-desc">End-to-end multi-agent complaint resolution in the transmission domain at CMCC Guangdong</p>
+        <p class="practice-desc">OpenAN orchestrates specialized agents end-to-end — bridging call centers, billing, CDN, and NOC for autonomous complaint resolution</p>
       </div>
     </a>
 
